@@ -15,7 +15,7 @@ All requests should use an **Authorization header** to work with your own data:
 fetch(
     url,
     {
-        headers: { 'Authorization': 'whatever-you-want' }
+        headers: { 'Authorization': 'yo-yo' }
     }
 )
 ```

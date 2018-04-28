@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 
     Use an Authorization header to work with your own data:
 
-    fetch(url, { headers: { 'Authorization': 'whatever-you-want' }})
+    fetch(url, { headers: { 'Authorization': 'yo-yo' }})
 
     The following endpoints are available:
 
