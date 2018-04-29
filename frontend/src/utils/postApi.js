@@ -1,8 +1,8 @@
 const api = "http://localhost:3001"
 
-const token = localStorage.token
+let token = localStorage.token
 if (!token) {
-    token = Math.random().toString(36).substr(-8)
+    token = localStorage.token = Math.random().toString(36).substr(-8);
 }
 
 const headers = {
@@ -13,7 +13,7 @@ const headers = {
 
 export const fetchPosts = (category) => {
     const ifCategories = category ? `${api}/${category}/posts` : `${api}/posts`
-    fetch(ifCategory, { headers })
+    return fetch(ifCategories, { headers })
         .then(res => res.json())
         .then(data => data.filter(post => !post.deleted))
 }
@@ -25,11 +25,16 @@ export const fetchPost = (id) => {
 }
 
 export const createPost = (post) => {
-    fetch(`${api}/posts/`,
+    const postData = {
+        ...post,
+        timestamp: Date.now()
+    }
+
+    return fetch(`${api}/posts/`,
         {
             headers,
             method: "POST",
-            body: JSON.stringify({ post })
+            body: JSON.stringify(postData)
         })
         .then(res => res.json())
         .then(data => data)
@@ -46,11 +51,16 @@ export const deletePost = (post) => {
 }
 
 export const updatePost = (post) => {
-    fetch(`${api}/posts/${post.id}`,
+    const postData = {
+        ...post,
+        timestamp: Date.now()
+    }
+
+    return fetch(`${api}/posts/${post.id}`,
         { 
             headers,
             method: "PUT",
-            body: JSON.stringify({ post })
+            body: JSON.stringify(postData)
         })
         .then(res => res.json())
         .then(data => data)

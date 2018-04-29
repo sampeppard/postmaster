@@ -1,3 +1,6 @@
-import { combineReducers } from 'redux'
-import * as Actions from '../actions/index.js'
+import { combineReducers } from 'redux';
+import categories from './categories';
 
+export default combineReducers({
+    categories
+});

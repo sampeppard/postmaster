@@ -1,9 +1,9 @@
 
 const api = "http://localhost:3001"
 
-const token = localStorage.token
+let token = localStorage.token
 if (!token) {
-    token = Math.random().toString(36).substr(-8)
+    token = localStorage.token = Math.random().toString(36).substr(-8);
 }
 
 const headers = {
@@ -12,7 +12,7 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
-export const fetchComments = (category) => {
+export const fetchComments = (id) => {
     fetch(`${api}/posts/${id}/comments`, { headers })
         .then(res => res.json())
         .then(data => data.filter(comment => !comment.deleted))
@@ -25,11 +25,16 @@ export const fetchComment = (id) => {
 }
 
 export const createComment = (comment) => {
-    fetch(`${api}/comments`,
+    const commentData = {
+        ...comment,
+        timestamp: Date.now()
+    }
+
+    return fetch(`${api}/comments`,
         { 
             headers,
             method: "POST",
-            body: JSON.stringify({ comment })
+            body: JSON.stringify(commentData)
         })
         .then(res => res.json())
         .then(data => data)
@@ -46,11 +51,16 @@ export const deleteComment = (comment) => {
 }
 
 export const updateComment = (comment) => {
+    const commentData = {
+        ...comment,
+        timestamp: Date.now()
+    }
+
     fetch(`${api}/comments/${comment.id}`,
         {
             headers,
             method: "PUT",
-            body: JSON.stringify({ comment })
+            body: JSON.stringify(commentData)
         })
         .then(res => res.json())
         .then(data => data.json())
