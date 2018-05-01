@@ -1,13 +1,15 @@
 import { FETCH_CATEGORIES } from '../actions/constants'
 
-const categories = (state = {}, action) => {
+export function categoriesReducer(state = {}, action) {
     const { categories } = action;
+
     switch (action.type) {
         case FETCH_CATEGORIES:
-            return categories
+            return {
+                ...state,
+                "categories": categories
+            }
         default:
             return state
     }
 }
-
-export default categories

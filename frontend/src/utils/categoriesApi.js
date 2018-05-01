@@ -11,8 +11,8 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
-export const fetchCategories = () => {
+export const fetchCategories = () => 
     fetch(`${api}/categories`, { headers })
         .then(res => res.json())
         .then(data => data.categories)
-}
+

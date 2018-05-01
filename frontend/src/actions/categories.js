@@ -1,16 +1,14 @@
-import * as ReadableAPI from '../utils/categoriesApi'
 import { FETCH_CATEGORIES } from './constants'
+import * as categoriesApi from '../utils/categoriesApi'
 
-export const fetchCategoriesAction = (categories) => {
-    return {
+const fetchCategoriesAction = (categories) => (
+    {
         type: FETCH_CATEGORIES,
         categories
     }
-}
+)
 
-export const fetchCategories = () => {
-    return dispatch => {
-        return categoriesAPI.fetchCategories()
-            .then(categories => dispatch(fetchCategoriesAction(categories)))
-    }
+export const fetchCategories = () => dispatch => {
+    categoriesApi.fetchCategories()
+        .then(data => dispatch(fetchCategoriesAction(data)));
 }

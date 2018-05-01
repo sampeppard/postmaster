@@ -1,19 +1,26 @@
-import React, { Component } from 'react';
-import { fetchCategories } from '../utils/categoriesApi'
-import { fetchPosts } from '../utils/postApi'
+import React, { Component } from 'react'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import Main from '../components/Main'
+import { fetchCategories } from '../actions/categories';
 
 class App extends Component {
+    componentDidMount() {
+        this.props.loadCategories()
+    }
 
     render() {
         return (
             <div className="App">
                 <Main/>
-                Hello World
             </div>
         );
     }
 }
 
-export default App;
+export default withRouter(
+    connect(null, {
+        loadCategories: fetchCategories,
+    })(App)
+);

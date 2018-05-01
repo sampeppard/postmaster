@@ -12,25 +12,13 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
-export const fetchComments = (id) => {
+export const fetchComments = (id) =>
     fetch(`${api}/posts/${id}/comments`, { headers })
         .then(res => res.json())
-        .then(data => data.filter(comment => !comment.deleted))
-}
 
-export const fetchComment = (id) => {
-    fetch(`${api}/comments/${id}`, { headers })
-        .then(res => res.json())
-        .then(data => data)
-}
 
-export const createComment = (comment) => {
-    const commentData = {
-        ...comment,
-        timestamp: Date.now()
-    }
-
-    return fetch(`${api}/comments`,
+export const createComment = (comment, commentData) =>
+    fetch(`${api}/comments`,
         { 
             headers,
             method: "POST",
@@ -38,7 +26,6 @@ export const createComment = (comment) => {
         })
         .then(res => res.json())
         .then(data => data)
-}
 
 export const deleteComment = (comment) => {
     fetch(`${api}/comments/${comment.id}`,
