@@ -18,7 +18,7 @@ class Posts extends Component {
         return (
             <div className="row">
                     <div className="col-sm-12">
-                        <p>{posts}</p>
+                        {posts.map(post => <Post key={post.id} post={post} />)}
                     </div>
 
             </div>
@@ -32,8 +32,9 @@ const mapStateToProps = ({ post }) => {
             .map(postId => post.posts[postId])
             .filter(post => post)
 
-        console.log(post.posts);
-        return posts
+        return {
+            posts
+        }
     } else {
         return {
             posts: []
