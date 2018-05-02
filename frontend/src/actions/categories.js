@@ -12,3 +12,8 @@ export const fetchCategories = () => dispatch => {
     categoriesApi.fetchCategories()
         .then(data => dispatch(fetchCategoriesAction(data)));
 }
+
+export const fetchPostsbyCategory = (category) => dispatch => {
+    categoriesApi.fetchPostsByCategory(category)
+        .then(data => dispatch(fetchCategoriesAction(data)))
+}

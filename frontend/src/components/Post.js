@@ -37,12 +37,9 @@ class Post extends Component {
         } = this.props
 
         return (
-            <div className="post">
-                <Link to={`/category/${post.category}/${post.id}`}>
-                    <h2>{post.title}</h2>
-                </Link>
-                <p>{post.body}</p>
-            </div>
+            <p>hello</p>
         )
     }
 }
+
+export default connect(null, postActions)(Post)

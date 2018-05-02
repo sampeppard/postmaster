@@ -8,18 +8,18 @@ import * as postActions from '../actions/posts'
 class NewPost extends Component {
     state = {
         author: '',
-        subject: '',
+        title: '',
         category: '',
-        content: '',
+        body: '',
         error: false
     }
 
     componentDidMount() {
         if (this.props.post) {
-            const { author, subject, category, body } = this.props.post;
+            const { author, title, category, body } = this.props.post;
             this.setState({
                 author,
-                subject,
+                title,
                 category,
                 body
             });
@@ -36,12 +36,12 @@ class NewPost extends Component {
     validateForm = () => {
         const {
             author,
-            subject,
+            title,
             category,
-            content
+            body
         } = this.state
 
-        if (author === '' || subject === '' || category === '' || content === '') {
+        if (author === '' || title === '' || category === '' || body === '') {
             return false
         } else {
             return true
@@ -51,9 +51,9 @@ class NewPost extends Component {
     resetForm = () => {
         this.setState({
             author: '',
-            subject: '',
+            title: '',
             category: '',
-            content: ''
+            body: ''
         })
     }
 
@@ -70,14 +70,13 @@ class NewPost extends Component {
                 error: true
             })
         }
-        console.log(this.props.createPost(post))
     }
 
     render() {
         const {
             author,
-            subject,
-            content,
+            title,
+            body,
             category
         } = this.state
 
@@ -92,12 +91,12 @@ class NewPost extends Component {
                     <input type="text" className="form-control" id="author" name="author" placeholder="author" value={author} onChange={this.handleFormChange} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="subject" />
-                    <input type="text" className="form-control" id="subject" name="subject" placeholder="subject" value={subject} onChange={this.handleFormChange} />
+                    <label htmlFor="title" />
+                    <input type="text" className="form-control" id="title" name="title" placeholder="title" value={title} onChange={this.handleFormChange} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="content" />
-                    <textarea type="text" className="form-control" id="content" name="content" placeholder="content" value={content} onChange={this.handleFormChange} />
+                    <label htmlFor="body" />
+                    <textarea type="text" className="form-control" id="body" name="body" placeholder="body" value={body} onChange={this.handleFormChange} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="category" />

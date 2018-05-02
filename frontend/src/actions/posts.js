@@ -54,7 +54,7 @@ export const deletePost = (id) => dispatch => {
         .then(deletePostAction(id))
 }
 
-export const updatePostAction = (post) => ({
+const updatePostAction = (post) => ({
     type: UPDATE_POST,
     post
 })
@@ -62,4 +62,15 @@ export const updatePostAction = (post) => ({
 export const updatePost = (id, post) => dispatch => {
     postsAPI.updatePost(id, post)
         .then(post => dispatch(updatePostAction(post)))
+}
+
+const votePostAction = ({ id, score }) => {
+    type: VOTE_POST,
+    id,
+    score
+}
+
+export const votePost = (id, vote) => dispatch => {
+    postsAPI.votePost(id, vote)
+        .then(post => dispatch(votePostAction(post)))
 }
