@@ -15,6 +15,9 @@ class Main extends Component {
                 <div className="row">
                     <nav className="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
                         <ul className="nav nav-pills flex-column">
+                            <Link to="/">
+                                <li className="nav-link">show all</li>
+                            </Link>
                             {categories.map((category) => (
                                 <li key={category.name} className="nav-item">
                                     <Link to={`/category/${category.path}`} className="nav-link">{category.name}</Link>

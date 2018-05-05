@@ -40,7 +40,9 @@ class Post extends Component {
             <React.Fragment>
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title">{post.title}</h5>
+                    <Link to={`/category/${post.category}/${post.id}`}>
+                        <h5 className="card-title">{post.title}</h5>
+                    </Link>
                     <h6 class="card-subtitle mb-2 text-muted">posted by: {post.author}</h6>
                     <p className="card-text">{post.body}</p>
                     <a href="#" className="btn btn-primary">Go somewhere</a>

@@ -3,22 +3,38 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { fetchPosts } from '../actions/posts'
+import { fetchPostsByCategory } from '../actions/categories'
 import Post from './Post'
 
 class Posts extends Component {
     componentDidMount() {
-        this.props.fetchPosts()
+        if (this.props.match.params.category) {
+            this.props.fetchPostsByCategory()
+        } else {
+            this.props.fetchPosts()
+        }
     }
+
+    
 
     render() {
         const { 
             posts
         } = this.props
 
+        const {
+            category
+        } = this.props.match.params
+
+        const categorizedPosts = posts.filter((post) => post.category === category)
+
         return (
             <div className="row">
                     <div className="col-sm-12">
-                        {posts.map(post => <Post key={post.id} post={post} />)}
+                    {!category
+                        ? posts.map(post => <Post key={post.id} post={post} />)
+                        : categorizedPosts.map(post => <Post key={post.id} post={post} />)
+                    }
                     </div>
 
             </div>
@@ -45,5 +61,6 @@ const mapStateToProps = ({ post }) => {
 export default connect(mapStateToProps, 
     {
         fetchPosts,
+        fetchPostsByCategory
     }
 )(Posts);
