@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import Header from '../components/Header'
 import Main from '../components/Main'
-import NewPost from '../components/NewPost'
 import Posts from '../components/Posts'
 
 import { fetchCategories } from '../actions/categories'
@@ -26,7 +25,6 @@ class App extends Component {
                             <Route exact path="/" component={Posts} />
                             <Route exact path="/category/:category" component={Posts} />
                         </Switch>
-                        <NewPost />
                     </main>
                 </div>
             </div>

@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { fetchPosts } from '../actions/posts'
+import { fetchPosts,  } from '../actions/posts'
 import { fetchPostsByCategory } from '../actions/categories'
+
+import NewPost from './NewPost'
 import Post from './Post'
 
 class Posts extends Component {
@@ -15,12 +17,12 @@ class Posts extends Component {
         }
     }
 
-    
-
     render() {
         const { 
             posts
         } = this.props
+
+        console.log(posts);
 
         const {
             category
@@ -29,15 +31,21 @@ class Posts extends Component {
         const categorizedPosts = posts.filter((post) => post.category === category)
 
         return (
-            <div className="row">
-                    <div className="col-sm-12">
-                    {!category
-                        ? posts.map(post => <Post key={post.id} post={post} />)
-                        : categorizedPosts.map(post => <Post key={post.id} post={post} />)
-                    }
-                    </div>
-
-            </div>
+            <React.Fragment>
+                <div className="row">
+                        <div className="col-sm-12">
+                            {!category && <NewPost/>}
+                        </div>
+                </div>
+                <div className="row">
+                        <div className="col-sm-12">
+                            {!category
+                                ? posts.map(post => <Post key={post.id} post={post} />)
+                                : categorizedPosts.map(post => <Post key={post.id} post={post} />)
+                            }
+                        </div>
+                </div>
+            </React.Fragment>
         )
     }
 }

@@ -51,7 +51,7 @@ const deletePostAction = (id) => ({
 
 export const deletePost = (id) => dispatch => {
     postsAPI.deletePost(id)
-        .then(deletePostAction(id))
+        .then(() => dispatch(deletePostAction(id)))
 }
 
 const updatePostAction = (post) => ({
@@ -64,11 +64,11 @@ export const updatePost = (id, post) => dispatch => {
         .then(post => dispatch(updatePostAction(post)))
 }
 
-const votePostAction = ({ id, score }) => {
+const votePostAction = ({ id, voteScore }) => ({
     type: VOTE_POST,
     id,
-    score
-}
+    voteScore
+})
 
 export const votePost = (id, vote) => dispatch => {
     postsAPI.votePost(id, vote)

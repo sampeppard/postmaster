@@ -38,7 +38,10 @@ export const deletePost = (id) =>
 export const updatePost = (id, post) =>
     fetch(`${api}/posts/${id}`,
         { 
-            headers,
+            headers: {
+                ...headers,
+                'Content-Type': 'application/json'
+            },
             method: "PUT",
             body: JSON.stringify(post)
         })
@@ -47,7 +50,10 @@ export const updatePost = (id, post) =>
 export const votePost = (id, vote) =>
     fetch(`${api}/posts/${id}`,
         { 
-            headers,
+            headers: {
+                ...headers,
+                'Content-Type': 'application/json'
+            },
             method: "POST",
             body: JSON.stringify({ option: vote })
         })

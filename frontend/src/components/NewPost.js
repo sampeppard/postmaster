@@ -11,6 +11,7 @@ class NewPost extends Component {
         title: '',
         category: '',
         body: '',
+        seeForm: false,
         error: false
     }
 
@@ -53,7 +54,8 @@ class NewPost extends Component {
             author: '',
             title: '',
             category: '',
-            body: ''
+            body: '',
+            seeForm: false
         })
     }
 
@@ -72,12 +74,25 @@ class NewPost extends Component {
         }
     }
 
+    formToggle = () => {
+        if (this.state.seeForm) {
+            this.setState({
+                seeForm: false
+            })
+        } else {
+            this.setState({
+                seeForm: true
+            })
+        }
+    }
+
     render() {
         const {
             author,
             title,
             body,
-            category
+            category,
+            seeForm
         } = this.state
 
         const {
@@ -85,7 +100,10 @@ class NewPost extends Component {
         } = this.props
 
         return (
-            <form onSubmit={this.serializeForm}>
+            <React.Fragment>
+            {!seeForm
+            ? <button className="btn btn-success" onClick={this.formToggle}>New Post</button>
+            : <form onSubmit={this.serializeForm}>
                 <div className="form-group">
                     <label htmlFor="author" />
                     <input type="text" className="form-control" id="author" name="author" placeholder="author" value={author} onChange={this.handleFormChange} />
@@ -107,8 +125,11 @@ class NewPost extends Component {
                         ))}
                     </select>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary new-post-submit-button">Submit</button>
+                <button className="btn btn-danger" onClick={this.formToggle}>Cancel</button>
             </form>
+            }
+            </React.Fragment>
         )
     }
 }

@@ -3,7 +3,8 @@ import {
     FETCH_POST,
     CREATE_POST,
     DELETE_POST,
-    UPDATE_POST
+    UPDATE_POST,
+    VOTE_POST
 } from '../actions/constants'
 
 export function postsReducer(state = {}, action) {
@@ -13,8 +14,8 @@ export function postsReducer(state = {}, action) {
             return {
                 ...state,
                 posts: posts.reduce((a, c) => {
-                    a[c.id] = c;
-                    return a;
+                    a[c.id] = c
+                    return a
                 }, {})
             }
             break;
@@ -46,11 +47,24 @@ export function postsReducer(state = {}, action) {
                 ...state,
                 posts: {
                     ...state.posts,
-                    [post.id]: post
+                    [action.id]: {
+
+                    }
                 }
+            }
+        case VOTE_POST:
+            return {
+                ...state,
+                posts: {
+                    ...state.posts,
+                    [action.id]: {
+                        ...state.posts[action.id],
+                        voteScore: action.voteScore
+                    }
+                }
+
             }
         default:
             return state
-            break;
     }
 }
