@@ -6,7 +6,8 @@ import {
     CREATE_POST,
     UPDATE_POST,
     VOTE_POST,
-    DELETE_POST
+    DELETE_POST,
+    SORT_POST
 } from './constants'
 
 const fetchPostsAction = (posts) => ({
@@ -74,3 +75,8 @@ export const votePost = (id, vote) => dispatch => {
     postsAPI.votePost(id, vote)
         .then(post => dispatch(votePostAction(post)))
 }
+
+export const sortPostAtion = (sort) => ({
+    type: SORT_POST,
+    sort
+})

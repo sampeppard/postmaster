@@ -62,11 +62,19 @@ class NewPost extends Component {
     serializeForm = (event) => {
         event.preventDefault()
 
-        const { error, ...post } = this.state
+        const {
+            error,
+            ...post 
+        } = this.state
 
         if (this.validateForm()) {
-            this.props.createPost(post)
-            this.resetForm()
+            if (this.props.edit) {
+                this.props.updatePost(this.props.post.id, post)
+                this.props.onClose()
+            } else {
+                this.props.createPost(post)
+                this.resetForm()
+            }
         } else {
             this.setState({
                 error: true
@@ -96,12 +104,16 @@ class NewPost extends Component {
         } = this.state
 
         const {
-            categories
+            categories,
+            edit,
+            onClose
         } = this.props
+
+        const cancel = edit ? onClose : this.formToggle
 
         return (
             <React.Fragment>
-            {!seeForm
+            {!seeForm && !edit
             ? <button className="btn btn-success" onClick={this.formToggle}>New Post</button>
             : <form onSubmit={this.serializeForm}>
                 <div className="form-group">
@@ -126,7 +138,7 @@ class NewPost extends Component {
                     </select>
                 </div>
                 <button type="submit" className="btn btn-primary new-post-submit-button">Submit</button>
-                <button className="btn btn-danger" onClick={this.formToggle}>Cancel</button>
+                <button className="btn btn-danger" onClick={cancel}>Cancel</button>
             </form>
             }
             </React.Fragment>

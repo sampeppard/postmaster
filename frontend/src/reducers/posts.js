@@ -4,7 +4,8 @@ import {
     CREATE_POST,
     DELETE_POST,
     UPDATE_POST,
-    VOTE_POST
+    VOTE_POST,
+    SORT_POST
 } from '../actions/constants'
 
 export function postsReducer(state = {}, action) {
@@ -47,9 +48,7 @@ export function postsReducer(state = {}, action) {
                 ...state,
                 posts: {
                     ...state.posts,
-                    [action.id]: {
-
-                    }
+                    [post.id]: post
                 }
             }
         case VOTE_POST:
@@ -63,6 +62,11 @@ export function postsReducer(state = {}, action) {
                     }
                 }
 
+            }
+        case SORT_POST:
+            return {
+                ...state,
+                sortBy: action.sort
             }
         default:
             return state

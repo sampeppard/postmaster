@@ -22,8 +22,6 @@ class Posts extends Component {
             posts
         } = this.props
 
-        console.log(posts);
-
         const {
             category
         } = this.props.match.params
