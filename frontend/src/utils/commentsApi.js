@@ -27,39 +27,29 @@ export const createComment = (comment, commentData) =>
         .then(res => res.json())
         .then(data => data)
 
-export const deleteComment = (comment) => {
-    fetch(`${api}/comments/${comment.id}`,
+export const deleteComment = (id) =>
+    fetch(`${api}/comments/${id}`,
         {
             headers,
-            method: "DELETE"
+            method: "DELETE",
+            body: JSON.stringify(id)
         })
         .then(res => res.json())
-        .then(data => data)
-}
 
-export const updateComment = (comment) => {
-    const commentData = {
-        ...comment,
-        timestamp: Date.now()
-    }
-
+export const updateComment = (comment) =>
     fetch(`${api}/comments/${comment.id}`,
         {
             headers,
             method: "PUT",
-            body: JSON.stringify(commentData)
+            body: JSON.stringify(comment)
         })
         .then(res => res.json())
-        .then(data => data.json())
-}
 
-export const voteComment = (id, option) => {
+export const voteComment = (id, option) =>
     fetch(`${api}/comments/${id}`,
         {
             headers,
             method: "POST",
-            body: JSON.stringify({ option })
+            body: JSON.stringify({ option: vote })
         })
         .then(res => res.json())
-        .then(data => data.json())
-}
