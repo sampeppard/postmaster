@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import Header from '../components/Header'
 import Main from '../components/Main'
 import Posts from '../components/Posts'
+import PostDetail from '../components/PostDetail'
 
 import { fetchCategories } from '../actions/categories'
 import { fetchPosts } from '../actions/posts'
@@ -19,7 +20,10 @@ class App extends Component {
             <div className="App">
                 <Header />
                 <div className="container-fluid">
-                    <Main/>
+                    <Switch>
+                        <Route exact path="/" component={Main} />
+                        <Route exact path="/category/:category" component={Main} />
+                    </Switch>
                     <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
                         <Switch>
                             <Route exact path="/" component={Posts} />
@@ -27,6 +31,7 @@ class App extends Component {
                         </Switch>
                     </main>
                 </div>
+                <Route path="/category/:category/:postId" component={PostDetail} />
             </div>
         );
     }

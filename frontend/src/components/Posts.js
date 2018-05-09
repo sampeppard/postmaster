@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { fetchPosts,  } from '../actions/posts'
+import { fetchPosts } from '../actions/posts'
 import { fetchPostsByCategory } from '../actions/categories'
 
 import NewPost from './NewPost'

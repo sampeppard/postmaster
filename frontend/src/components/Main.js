@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import PropTypes from 'prop-types'
@@ -18,11 +18,12 @@ class Main extends Component {
                             <Link to="/">
                                 <li className="nav-link">show all</li>
                             </Link>
-                            {categories.map((category) => (
-                                <li key={category.name} className="nav-item">
-                                    <Link to={`/category/${category.path}`} className="nav-link">{category.name}</Link>
-                                </li>
-                            ))}
+                                {categories.map((category) => (
+                                    <li key={category.name} className="nav-item">
+                                        <Link to={`/category/${category.path}`} className="nav-link">{category.name}</Link>
+                                    </li>
+                                ))}
+                        
                         </ul>
                     </nav>
                 </div>

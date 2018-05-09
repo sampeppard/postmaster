@@ -45,7 +45,7 @@ export const updateComment = (comment) =>
         })
         .then(res => res.json())
 
-export const voteComment = (id, option) =>
+export const voteComment = (id, vote) =>
     fetch(`${api}/comments/${id}`,
         {
             headers,
