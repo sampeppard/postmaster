@@ -4,7 +4,6 @@ import {
     FETCH_COMMENTS,
     CREATE_COMMENT,
     DELETE_COMMENT, 
-    EDIT_COMMENT,
     UPDATE_COMMENT,
     VOTE_COMMENT
 } from './constants'
@@ -42,8 +41,8 @@ const updateCommentAction = (comment) => ({
 })
 
 export const updateComment = (id, comment) => dispatch => {
-    commentsApi.updateComment(comment)
-        .then(dispatch(updateCommentAction(comment)));
+    commentsApi.updateComment(id, comment)
+        .then((comment) => dispatch(updateCommentAction(comment)));
 }
 
 const deleteCommentAction = (comment, parentId) => ({

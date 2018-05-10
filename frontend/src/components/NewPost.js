@@ -17,7 +17,13 @@ class NewPost extends Component {
 
     componentDidMount() {
         if (this.props.post) {
-            const { author, title, category, body } = this.props.post;
+            const {
+                author,
+                title,
+                category,
+                body 
+            } = this.props.post;
+
             this.setState({
                 author,
                 title,
@@ -28,7 +34,11 @@ class NewPost extends Component {
     }
 
     handleFormChange = (event) => {
-        const { name, value } = event.target;
+        const {
+            name,
+            value 
+        } = event.target
+        
         this.setState({
             [name]: value
         })

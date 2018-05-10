@@ -36,8 +36,8 @@ export const deleteComment = (id) =>
         })
         .then(res => res.json())
 
-export const updateComment = (comment) =>
-    fetch(`${api}/comments/${comment.id}`,
+export const updateComment = (id, comment) =>
+    fetch(`${api}/comments/${id}`,
         {
             headers,
             method: "PUT",

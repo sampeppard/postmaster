@@ -46,7 +46,6 @@ class Post extends Component {
 
     voteOnPost = (voteChoice) => {
         this.props.votePost(this.props.post.id, voteChoice);
-        console.log(voteChoice)
     }
 
     render() {
@@ -98,7 +97,7 @@ class Post extends Component {
                         </React.Fragment>
                     }
                 </div>
-                <div class="card-footer text-muted">
+                <div className="card-footer text-muted">
                     category: {post.category} | rating: {post.voteScore}
                 </div>
             </div>
