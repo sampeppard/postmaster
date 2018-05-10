@@ -48,6 +48,13 @@ class Posts extends Component {
     }
 }
 
+Posts.propTypes = {
+    match: PropTypes.object,
+    fetchPosts: PropTypes.func,
+    fetchPostsByCategory: PropTypes.func,
+    posts: PropTypes.array
+}
+
 const mapStateToProps = ({ post }) => {
     if (post.posts) {
         let posts = Object.keys(post.posts)

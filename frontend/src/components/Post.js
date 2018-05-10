@@ -60,6 +60,9 @@ class Post extends Component {
         return (
             <React.Fragment>
             <div className="card">
+                <div className="card-header">
+                    {post.category}
+                </div>
                 <div className="card-body">
                     {!this.state.delete && !this.state.edit
                         ? <React.Fragment>
@@ -98,13 +101,20 @@ class Post extends Component {
                     }
                 </div>
                 <div className="card-footer text-muted">
-                    category: {post.category} | rating: {post.voteScore}
+                    comments: {post.commentCount} | rating: {post.voteScore}
                 </div>
             </div>
             <br/>
             </React.Fragment>
         )
     }
+}
+
+Post.propTypes = {
+    post: PropTypes.object,
+    votePost: PropTypes.func,
+    deletePost: PropTypes.func,
+    onDelete: PropTypes.func
 }
 
 export default connect(null, postActions)(Post)

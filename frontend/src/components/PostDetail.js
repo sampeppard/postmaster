@@ -46,6 +46,14 @@ class PostDetail extends Component {
     }
 }
 
+PostDetail.propTypes = {
+    post: PropTypes.object,
+    fetchPost: PropTypes.func,
+    fetchComments: PropTypes.func,
+    match: PropTypes.object,
+    comments: PropTypes.array
+}
+
 PostDetail.defaultProps = {
     comments: []
 }

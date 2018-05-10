@@ -19,7 +19,6 @@ export function postsReducer(state = {}, action) {
                     return a
                 }, {})
             }
-            break;
         case FETCH_POST:
             return {
                 ...state,

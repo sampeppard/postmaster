@@ -156,6 +156,15 @@ class NewPost extends Component {
     }
 }
 
+NewPost.propTypes = {
+    categories: PropTypes.array,
+    edit: PropTypes.bool,
+    fetchPost: PropTypes.func,
+    updatePost: PropTypes.func,
+    onClose: PropTypes.func,
+    post: PropTypes.object,
+}
+
 NewPost.defaultProps = {
     categories: []
 }

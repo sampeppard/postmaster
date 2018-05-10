@@ -101,7 +101,7 @@ class Comment extends Component {
 }
 
 Comment.propTypes = {
-    comment: PropTypes.object.isRequired
+    comment: PropTypes.object
 }
 
 export default connect(null,

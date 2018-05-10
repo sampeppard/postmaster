@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import PropTypes from 'prop-types'
@@ -30,6 +30,10 @@ class Main extends Component {
             </React.Fragment>
         )
     }
+}
+
+Main.propTypes = {
+    categories: PropTypes.array
 }
 
 Main.defaultProps = {
