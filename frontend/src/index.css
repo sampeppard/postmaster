@@ -307,3 +307,12 @@ body {
 .post-detail {
     margin-top: 100px;
 }
+
+.not-found {
+    margin-top: 60px;
+}
+
+.display-4 {
+    margin-left: 12px;
+    margin-bottom: 25px;
+}

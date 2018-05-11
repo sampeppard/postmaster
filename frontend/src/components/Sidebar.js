@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import PropTypes from 'prop-types'
 
-class Main extends Component {
+class Sidebar extends Component {
     render() {
         const {
             categories
@@ -32,11 +32,11 @@ class Main extends Component {
     }
 }
 
-Main.propTypes = {
+Sidebar.propTypes = {
     categories: PropTypes.array
 }
 
-Main.defaultProps = {
+Sidebar.defaultProps = {
     categories: []
 }
 
@@ -46,4 +46,4 @@ const mapStateToProps = ({ category }) => (
     }
 )
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps)(Sidebar);

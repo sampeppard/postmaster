@@ -8,11 +8,16 @@ import { fetchComments } from '../actions/comments'
 import Post from './Post'
 import Comment from './Comment'
 import NewComment from './NewComment'
+import NotFound from './NotFound'
 
 class PostDetail extends Component {
     componentDidMount() {
         this.props.fetchPost(this.props.match.params.postId)
         this.props.fetchComments(this.props.match.params.postId)
+    }
+
+    homeOnDelete = () => {
+        this.props.history.push('/')
     }
 
     render() {
@@ -21,27 +26,37 @@ class PostDetail extends Component {
             comments
         } = this.props
 
+        const deleted = JSON.stringify(post) === '{}' && !post.hasOwnProperty('error')
+        const postUndefined = typeof post === 'undefined'
+
         return (
-            <div className="container post-detail">
-                <div className="row post-detail-row">
-                    <div className="col-sm-12">
-                        <Post key={post.id} post={post} />
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-sm-12">
-                        <NewComment parentId={this.props.match.params.postId} />
-                    </div>
-                </div>
-                <div className="row">
-                    <h2 className="text-center">Comments</h2>
-                    {comments.map((comment) => (
-                        <div key={comment.id}  className="col-sm-12">
-                            <Comment key={comment.id} comment={comment} />
+            <React.Fragment>
+                {postUndefined && <div />}
+                {!deleted && !postUndefined && <div className="container post-detail">
+                    <div className="row post-detail-row">
+                        <div className="col-sm-12">
+                            <Post post={post} onDelete={this.homeOnDelete} />
                         </div>
-                    ))}
+                    </div>
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <NewComment parentId={this.props.match.params.postId} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="cal-sm-12">
+                            <h2 className="display-4">Comments</h2>
+                        </div>
+                        {comments.map((comment) => (
+                            <div key={comment.id}  className="col-sm-12">
+                                <Comment key={comment.id} comment={comment} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
+                }
+                {deleted && <NotFound />}
+            </React.Fragment>
         )
     }
 }
@@ -76,7 +91,7 @@ const mapStateToProps = ({ post, comment }) => {
 
 export default connect(mapStateToProps,
     {
-        fetchPost,
-        fetchComments
+        fetchPost: fetchPost,
+        fetchComments: fetchComments
     }
 )(PostDetail)

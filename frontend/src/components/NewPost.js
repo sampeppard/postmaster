@@ -99,7 +99,8 @@ class NewPost extends Component {
             })
         } else {
             this.setState({
-                seeForm: true
+                seeForm: true,
+                error: false
             })
         }
     }
@@ -110,7 +111,8 @@ class NewPost extends Component {
             title,
             body,
             category,
-            seeForm
+            seeForm,
+            error
         } = this.state
 
         const {
@@ -125,31 +127,38 @@ class NewPost extends Component {
             <React.Fragment>
             {!seeForm && !edit
             ? <button className="btn btn-success" onClick={this.formToggle}>New Post</button>
-            : <form onSubmit={this.serializeForm}>
-                <div className="form-group">
-                    <label htmlFor="author" />
-                    <input type="text" className="form-control" id="author" name="author" placeholder="author" value={author} onChange={this.handleFormChange} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="title" />
-                    <input type="text" className="form-control" id="title" name="title" placeholder="title" value={title} onChange={this.handleFormChange} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="body" />
-                    <textarea type="text" className="form-control" id="body" name="body" placeholder="body" value={body} onChange={this.handleFormChange} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="category" />
-                    <select className="form-control" id="category" name="category" value={category} onChange={this.handleFormChange}>
-                        <option value="select">category</option>
-                        {categories.map(category => (
-                            <option key={category.name} value={category.name}>{category.name}</option>
-                        ))}
-                    </select>
-                </div>
-                <button type="submit" className="btn btn-primary new-post-submit-button">Submit</button>
-                <button className="btn btn-danger" onClick={cancel}>Cancel</button>
-            </form>
+            : <React.Fragment>
+                {error &&
+                    <div className="alert alert-danger not-found" role="alert">
+                        Please fill out all fields.
+                    </div>
+                }
+                <form onSubmit={this.serializeForm}>
+                    <div className="form-group">
+                        <label htmlFor="author" />
+                        <input type="text" className="form-control" id="author" name="author" placeholder="author" value={author} onChange={this.handleFormChange} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="title" />
+                        <input type="text" className="form-control" id="title" name="title" placeholder="title" value={title} onChange={this.handleFormChange} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="body" />
+                        <textarea type="text" className="form-control" id="body" name="body" placeholder="body" value={body} onChange={this.handleFormChange} />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="category" />
+                        <select className="form-control" id="category" name="category" value={category} onChange={this.handleFormChange}>
+                            <option value="select">category</option>
+                            {categories.map(category => (
+                                <option key={category.name} value={category.name}>{category.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <button type="submit" className="btn btn-primary new-post-submit-button">Submit</button>
+                    <button className="btn btn-danger" onClick={cancel}>Cancel</button>
+                </form>
+            </React.Fragment>
             }
             </React.Fragment>
         )

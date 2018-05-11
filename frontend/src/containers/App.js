@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import Header from '../components/Header'
-import Main from '../components/Main'
+import Sidebar from '../components/Sidebar'
 import Posts from '../components/Posts'
 import PostDetail from '../components/PostDetail'
 
@@ -22,8 +22,8 @@ class App extends Component {
                 <Header />
                 <div className="container-fluid">
                     <Switch>
-                        <Route exact path="/" component={Main} />
-                        <Route exact path="/category/:category" component={Main} />
+                        <Route exact path="/" component={Sidebar} />
+                        <Route exact path="/category/:category" component={Sidebar} />
                     </Switch>
                     <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
                         <Switch>

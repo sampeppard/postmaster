@@ -32,7 +32,7 @@ class Posts extends Component {
             <React.Fragment>
                 <div className="row">
                         <div className="col-sm-12">
-                            {!category && <NewPost/>}
+                            <NewPost/>
                         </div>
                 </div>
                 <div className="row">

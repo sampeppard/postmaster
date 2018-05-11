@@ -91,7 +91,8 @@ class NewComment extends Component {
             })
         } else {
             this.setState({
-                seeForm: true
+                seeForm: true,
+                error: false
             })
         }
     }
@@ -115,18 +116,25 @@ class NewComment extends Component {
             <React.Fragment>
                 {!seeForm && !edit
                     ? <button className="btn btn-success" onClick={this.formToggle}>New Comment</button>
-                    : <form onSubmit={this.serializeForm}>
-                        <div className="form-group">
-                            <label htmlFor="author" />
-                            <input type="text" className="form-control" id="author" name="author" placeholder="author" value={author} onChange={this.handleFormChange} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="body" />
-                            <textarea type="text" className="form-control" id="body" name="body" placeholder="body" value={body} onChange={this.handleFormChange} />
-                        </div>
-                        <button type="submit" className="btn btn-primary new-post-submit-button">Submit</button>
-                        <button className="btn btn-danger" onClick={cancel}>Cancel</button>
-                    </form>
+                    : <React.Fragment>
+                        {error &&
+                            <div className="alert alert-danger not-found" role="alert">
+                                Please fill out all fields.
+                            </div>
+                        }
+                        <form onSubmit={this.serializeForm}>
+                            <div className="form-group">
+                                <label htmlFor="author" />
+                                <input type="text" className="form-control" id="author" name="author" placeholder="author" value={author} onChange={this.handleFormChange} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="body" />
+                                <textarea type="text" className="form-control" id="body" name="body" placeholder="body" value={body} onChange={this.handleFormChange} />
+                            </div>
+                            <button type="submit" className="btn btn-primary new-post-submit-button">Submit</button>
+                            <button className="btn btn-danger" onClick={cancel}>Cancel</button>
+                        </form>
+                    </React.Fragment>
                 }
             </React.Fragment>
         )
