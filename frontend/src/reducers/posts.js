@@ -14,9 +14,10 @@ export function postsReducer(state = {}, action) {
         case FETCH_POSTS:
             return {
                 ...state,
-                posts: {
-                    ...posts
-                }
+                posts: posts.reduce((a, c) => {
+                    a[c.id] = c
+                    return a
+                }, {})
             }
         case FETCH_POST:
             return {
@@ -64,7 +65,7 @@ export function postsReducer(state = {}, action) {
         case SORT_POST:
             return {
                 ...state,
-                sortBy: action.sort
+                sort: action.sortChoice
             }
         default:
             return state

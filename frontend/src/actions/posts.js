@@ -76,7 +76,7 @@ export const votePost = (id, vote) => dispatch => {
         .then(post => dispatch(votePostAction(post)))
 }
 
-export const sortPostAtion = (sort) => ({
+export const sortPostsAction = (sortChoice) => ({
     type: SORT_POST,
-    sort
+    sortChoice
 })

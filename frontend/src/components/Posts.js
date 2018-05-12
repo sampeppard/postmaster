@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import timeago from 'timeago.js';
 
-import { fetchPosts } from '../actions/posts'
+import { fetchPosts, sortPostsAction } from '../actions/posts'
 import { fetchPostsByCategory } from '../actions/categories'
 
 import NewPost from './NewPost'
@@ -16,6 +17,12 @@ class Posts extends Component {
             this.props.fetchPosts()
         }
     }
+
+    sortPosts = (event, sort) => {
+        this.props.sortPostsAction({
+            sortChoice: event.target.value
+        });
+    };
 
     render() {
         const { 
@@ -36,6 +43,17 @@ class Posts extends Component {
                         </div>
                 </div>
                 <div className="row">
+                    <div className="col-sm-4">
+                        <select className="custom-select" name="sort" onChange={this.sortPosts}>
+                            <option value="">Sort Posts By</option>
+                            <option value="-voteScore">Highest Score</option>
+                            <option value="voteScore">Lowest Score</option>
+                            <option value="-timestamp">Newest</option>
+                            <option value="+timestamp">Oldest</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="row">
                         <div className="col-sm-12">
                             {!category
                                 ? posts.map(post => <Post key={post.id} post={post} />)
@@ -47,6 +65,7 @@ class Posts extends Component {
         )
     }
 }
+
 
 Posts.propTypes = {
     match: PropTypes.object,
@@ -61,6 +80,22 @@ const mapStateToProps = ({ post }) => {
             .map(postId => post.posts[postId])
             .filter(post => post)
 
+        const sorter = (key) => {
+            let sortOrder = 1
+            if (key[0] === '-') {
+                sortOrder = -1
+                key = key.substr(1)
+            }
+
+            return function (a, b) {
+                return sortOrder * (a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0)
+            }
+        }
+
+        if (post.sort) {
+            posts.sort(sorter(post.sort.sortChoice));
+        }
+
         return {
             posts
         }
@@ -74,6 +109,7 @@ const mapStateToProps = ({ post }) => {
 export default connect(mapStateToProps, 
     {
         fetchPosts,
-        fetchPostsByCategory
+        fetchPostsByCategory,
+        sortPostsAction
     }
 )(Posts);
