@@ -1,22 +1,85 @@
-# Readable API Server
+# **Readable**
 
-This is the starter project for the final assessment project for Udacity's Redux course where you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
+##### A project built with React and Redux
+#
+##### By [Sam Peppard](https://github.com/sampeppard)
+#
+![screenshot of project main page](demo-screenshot.JPG)
 
-This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
+----
+### **Description**
 
-## Start Developing
+A project that allows a user to views posts on various topics and comment on them. The user can also create posts. This is a SPA created with React and Redux.
 
-To get started developing right away:
+This is project created for Udacity's Redux Nanodegree course.
 
-* Install and start the API server
-    - `cd api-server`
-    - `npm install`
-    - `node server`
-* In another terminal window, use Create React App to scaffold out the front-end
-    - `create-react-app frontend`
-    - `cd frontend`
-    - `npm start`
+This project was created based on provided starter for a backend server.
 
-## API Server
+----
+### **Specifications**
+| _Behavior_ | _Input_ | _Output_ |
+|:---------------------------------------------------------------------:|:---------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------:|
+| Enter a post | New post: Best way to build a redux app | Result: "i'm looking for the best way to make a CRUD app, any suggestions?" |
+| Enter post's author | Posts's author: Bob Sherman | Result: author: Bob Sherman |
+| Enter post body | Post body: "the app is a CRUD app nice an simple, nothing fancy!" | Result: body: "the app is a CRUD app nice an simple, nothing fancy!" |
+| Enter post category| Post category: "redux" | Result: category: "redux" |
+| View logged posts | Select question/topic | edit a question/topic's content, author or details |
+| Enter a post comment | Comment title: "use redux with react router!" Comment author: "Cal Clutterbuck"  | Result: title: "use redux with react router!" author: "Cal Clutterbuck" |
 
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+----
+### **Setup/Installation Requirements**
+
+If editing or running locally:
+
+##### 1. First, make sure the following is installed on your machine
+
+##### 2. make sure you have npm installed - check link below for installation
+
+https://nodejs.org/en/download/
+
+###### then
+
+#### Clone this repository: https://github.com/sampeppard/book-shelves.git
+
+```git clone https://github.com/sampeppard/book-shelves.git```
+
+#### OPEN project folder ('book-shelves') in Code Editor of choice
+
+* Run following commands from command line
+* ```cd api-server```
+* ```npm install``` or ```yarn install```
+* ```node server``` to start backend server
+
+Open another terminal at the root of the project
+
+* ```cd frontend```
+* ```npm install``` or ```yarn install```
+* ```npm start``` or ```yarn start``` to start the development server
+
+----
+
+### **Known Bugs**
+
+No known bugs.
+
+----
+### **Support and contact details**
+
+For comments or questions, please email sampeppard@gmail.com
+
+----
+### **Technologies Used**
+
+* HTML
+* CSS
+* JavaScript
+* React
+* Redux
+* Babel
+* yarn
+* npm
+
+----
+### **License**
+
+MIT
